@@ -23,9 +23,6 @@ const disabledPages = Object.keys(disablePageList).filter(
   item => disablePageList[item].pageDisabled === true || disablePageList[item].indexingDisabled,
 );
 
-// Making this its own const so Bodiless team can track whats changed.
-const sitemapOptions = typeof disabledPages !== 'undefined' ? {excludes: disabledPages}:null;
-
 // Gatsby plugins list.
 const plugins = [
   {
@@ -80,7 +77,7 @@ const plugins = [
   },
   {
     resolve: 'gatsby-plugin-sitemap',
-    options: sitemapOptions,
+    options: { excludes: disabledPages },
   },
   // ...createDefaultContentPlugins(
   //   ...getSampleDefaultContentConfig(),
